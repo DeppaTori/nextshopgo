@@ -1,8 +1,12 @@
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect } from "react";
 import { useState } from "react";
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, Button, Text, View } from "react-native";
+import { RootStackParamList } from "../helper";
 
-export default function Home() {
+type Props = NativeStackScreenProps<RootStackParamList, "Detail">;
+
+export default function Home({ route, navigation }: Props) {
   const [isLoading, setLoading] = useState(true);
   const [sample, setSample] = useState("");
 
@@ -33,6 +37,8 @@ export default function Home() {
       ) : (
         <Text>{sample}</Text>
       )}
+
+      <Button title="Detail" onPress={() => navigation.navigate("Detail")} />
     </View>
   );
 }
